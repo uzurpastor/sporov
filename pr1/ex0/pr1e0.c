@@ -1,4 +1,4 @@
-#include "libpr1.h"
+#include "../libpr1.h"
 
 
 int main(){
