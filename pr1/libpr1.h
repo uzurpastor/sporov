@@ -40,25 +40,133 @@ int count_strings(char *);
 char * concatf(char*, char*, char*, char*);
 void display_stn(struct Student *, int);
 void set_stn(FILE *, struct Student *, int);
-int fun_case1(FILE *, struct Student *, int);
+void fun_case1(struct Student *, int);
+int fun_case2(struct Student *, int);
+int fun_case3(struct Student *, int);
+int fun_case4(struct Student *, int);
+int compare(int sum[][3], int);
+int find_countofgroup(struct Student *, int);
+
 //--------END--------//
 
 
-int fun_case1(FILE * fp, struct Student * arr, int n){
-	int i;
-	int count = 0;//////////////////stoped//////////////
+int fun_case3(struct Student * arr, int n){
+	float subject[3] = {0};
+	float tmp;
+	int top = 1;
+	
+	for(int i = 0; i < n; i++){
+		subject[0] += arr[i].grade1;
+		subject[1] += arr[i].grade2;
+		subject[2] += arr[i].grade3;
+	}
+
+	for(int i = 0; i < 3; i++)
+		subject[i] /= n;
+			
+	tmp = subject[0];
+	for(int i = 0; i < 3; i++){
+		if(tmp < subject[i]){
+			tmp = subject[i];
+			top = i + 1;
+		}
+	}
+
+	return top;
+}
+
+
+int compare(int arr[][3], int n){
+	float middle;
+	int num = 0;
+
+	for(int i = 0; i < n; i++){
+		float tmp;
+		tmp = (float)arr[i][0]/(float)arr[i][1];
+		
+		if(i == 0){
+			middle = tmp;
+			num = arr[i][2];
+
+		}else if(tmp < middle){
+			middle = tmp;
+			num = arr[i][2];
+		}
+	}
+	return num;
+
+}
+
+
+int find_countofgroup(struct Student * group, int n){
+	int arr[n];
+	int x = n;
+
+	for(int i = 0; i < n; i++)
+		arr[i] = group[i].group;
+
+	for(int i = 0; i < n; i++)
+		for(int j = i+1; j < n; j++)
+			if(arr[i] == arr[j])
+				x--;
+
+	return x;
+}
+
+
+int fun_case4(struct Student * arr, int n){
+	int wgroup;
+	int COUNT = find_countofgroup(arr, n);
+
+	int (*sum)[3] = (int (*)[3])malloc(COUNT*3*sizeof(int));
+
+	for(int k, i = 0; i < n; i++){
+		k = arr[i].group - 1;
+		sum[k][0] += arr[i].grade1 + arr[i].grade2 + arr[i].grade3;
+		sum[k][1] += 3;
+		sum[k][2] = k + 1;
+	}
+	wgroup = compare(sum, COUNT);
+	free(sum);
+	return wgroup;
+}
+
+
+int fun_case2(struct Student * arr, int n){
+	int perc;
+	int count = 0;
+
+	for(int i = 0; i < n; i++){
+		if((arr[i].grade1 >= 10 && arr[i].grade1 <= 12)
+			|| (arr[i].grade2 >= 10 && arr[i].grade2 <= 12)
+			|| (arr[i].grade3 >= 10 && arr[i].grade3 <= 12))
+			count ++;
+	}
+	perc = (int)(count*100)/n;
+	return perc;
+
+}
+
+
+void fun_case1(struct Student * arr, int n){
+	for(int j = 1, i = 0; i < n; i++){
+		if(arr[i].grade1 == 0 || arr[i].grade2 == 0 || arr[i].grade3 == 0){
+			printf("%d. %s\n", j, arr[i].surname);
+			j++;
+		}
+	}
 }
 
 
 void set_stn(FILE * fp, struct Student * arr, int n){
 	int i;
 	for(i = 0; i < n; i++)
-    fscanf(fp, "%s %d %d %d %d",
-       arr[i].surname,
-      &arr[i].group,
-      &arr[i].grade1,
-      &arr[i].grade2,
-      &arr[i].grade3);
+		fscanf(fp, "%s %d %d %d %d",
+			 arr[i].surname,
+			&arr[i].group,
+			&arr[i].grade1,
+			&arr[i].grade2,
+			&arr[i].grade3);
 
 }
 
@@ -66,21 +174,21 @@ void set_stn(FILE * fp, struct Student * arr, int n){
 void display_stn(struct Student * arr, int n){
 	int i;
 	for(i = 0; i < n; i++)
-    printf("%s \t %d\t %d\t %d\t %d\n",
-      arr[i].surname,
-      arr[i].group,
-      arr[i].grade1,
-      arr[i].grade2,
-      arr[i].grade3);
+		printf("%s \t %d\t %d\t %d\t %d\n",
+			arr[i].surname,
+			arr[i].group,
+			arr[i].grade1,
+			arr[i].grade2,
+			arr[i].grade3);
 }
 
 
 char* concatf4(char* t1, char* t2, char* t3, char* t4){
 
 	int len1 = strlen(t1);
-  int len2 = strlen(t2);
-  int len3 = strlen(t3);
-  int len4 = strlen(t4);
+	int len2 = strlen(t2);
+	int len3 = strlen(t3);
+	int len4 = strlen(t4);
 
 	char * sum = (char*)malloc(sizeof(char)*(len1 + len2 + len3 + len4));
 	sum = strcat(sum, t1);
@@ -136,7 +244,7 @@ int sum_element_after(int pos, int arr[], int n){
 
 
 int pos_first_minus(int arr[], int n){
-	int  i = 0;
+	int i = 0;
 	for(i; i < n; i++)
 		if(arr[i] < 0)
 			break;
