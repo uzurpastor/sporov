@@ -1,6 +1,5 @@
 #include "../libpr1.h"
 
-
 int main(){
 
 	int n, i, tmp;
