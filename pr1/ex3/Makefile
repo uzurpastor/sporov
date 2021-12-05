@@ -10,4 +10,4 @@ pr1e3.o: pr1e3.c
 	$(CC) $(STD) -c pr1e3.c
 
 clean:
-	rm -rf *.o pr1e3 system_out
+	rm -rf *.o pr1e3
