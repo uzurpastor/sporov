@@ -55,8 +55,6 @@ int main(){
 			case 5:
 				display_stn(arr, n);
 				break;
-			// default:
-			//	 continue;
 			case 0:
 				break;
 		}
