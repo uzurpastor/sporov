@@ -1,5 +1,44 @@
 #include "libpr1.h"
 
+struct ArrayList * init(int n){
+	struct ArrayList * root = (struct ArrayList*)\
+		malloc(sizeof(struct ArrayList));
+	root -> next = NULL;
+	root -> value = n;
+	return root;
+}
+
+
+void display_list(struct ArrayList * node){
+	printf("%d ", node -> value);
+	if(node -> next != NULL){
+		display_list(node -> next);
+	}
+}
+
+struct ArrayList * find_lastelem(struct ArrayList * node){
+	if(node -> next != NULL)
+		node = find_lastelem(node -> next);
+	return node;
+
+}
+
+
+void add(struct ArrayList * node, int n){
+	struct ArrayList * tmp;
+
+	while(node -> next != NULL){
+		node = node -> next;
+	}	
+
+	tmp = (struct ArrayList*)\
+		malloc(sizeof(struct ArrayList));
+	tmp -> next = NULL;
+	tmp -> value = n;
+	node -> next = tmp;
+}
+
+  
 int fun_case3(struct Student * arr, int n){
 	float subject[3] = {0};
 	float tmp;

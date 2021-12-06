@@ -3,7 +3,7 @@
 #include <time.h>
 #include <string.h>
 
-struct Min { //struct for ex0
+	struct Min { //struct for ex0
 	int value;
 	int pos;
 };
@@ -16,26 +16,31 @@ struct Student{ //struct for ex3
 	int grade3;
 };
 
-//--------funcs for ex0-------//
-//-------START-------//
+struct ArrayList{ //struct for ex4
+	int value;
+	struct ArrayList * next;
+};
+
+	//---funcs for ex0---//
+	//-------START-------//
 void display_arr(char[], int[], int);
 void set_arr(int[], int);
 void remove_item(int[], int, int); //func for ex0
-//--------END--------//
+	//--------END--------//
 
-//--------funcs for ex2-------//
-//-------START-------//
+	//---funcs for ex2---//
+	//-------START-------//
 void set_arr(int[], int);
 void set_randm(int[], int);
 int find_middle(int[], int);
 int count_biggest(int, int[], int);
 int pos_first_minus(int[], int);
 int sum_element_after(int, int[], int);
-//--------END--------//
+	//--------END--------//
 
 
-//--------funcs for ex3-------//
-//-------START-------//
+	//---funcs for ex3---//
+	//-------START-------//
 int count_strings(char *);
 char * concatf(char*, char*, char*, char*);
 void display_stn(struct Student *, int);
@@ -47,5 +52,14 @@ int fun_case4(struct Student *, int);
 int compare(int sum[][3], int);
 int find_countofgroup(struct Student *, int);
 
-//--------END--------//
+	//--------END--------//
 
+
+	//---funcs for ex4---//
+	//-------START-------//
+struct ArrayList * init(int);
+void add(struct ArrayList *, int);
+void display_list(struct ArrayList *);
+struct ArrayList * find_lastelem(struct ArrayList *);
+
+	//--------END--------//
