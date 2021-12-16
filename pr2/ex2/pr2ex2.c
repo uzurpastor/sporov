@@ -25,10 +25,14 @@ int main(int argc, char *argv[]){
 				check++;
 				break; 
 			case 'h':
-				print_help();
+				usagex2(argv[0]);
 				break;
 			case 'o':
-				change_stream(fp, optarg); //problem place
+				printf("%s\n", optarg);
+				if((fp = ((char*)optarg, 'w', stdout)) == NULL){
+					perror("cannot open file");
+					exit(1);
+				}
 				break;
 			case 's':
 				special(pa, pb, pc);

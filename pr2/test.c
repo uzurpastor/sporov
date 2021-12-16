@@ -6,11 +6,12 @@ void main(){
 	FILE *fp;
 	// char *name = "stdout";
 
-	if((fp = ("stdout", 'w', stdout)) == NULL){
+	if((fp = freopen("stdout", "w", stdout)) == NULL){
 		printf("cannot open file");
 		exit(1);
 	}
-	printf("test");
+	printf("testd");
+	printf("34567890");
 	fclose(fp);
 	// return 0;
 }

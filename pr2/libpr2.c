@@ -1,6 +1,16 @@
 #include "libpr2.h"
 
 
+void usagex3(char *name){
+
+	printf("%s program that use arg of comm line:\n\n", name);
+	printf("\t--help\thelp message\n"
+		"\t-h\n"
+		"\t--compile\tstandart of compilation"
+		"\t-c\n");
+}
+
+
 void case_equation(float arg[]){
 	switch((int)arg[0]){
 		case 0:
@@ -77,13 +87,12 @@ void setcoef(float *p, char *optarg){
 }
 
 
-void print_help(){
-	 printf("pr2 program that use arg of comm line:\n\n"
-		"\t-a\tquadratic equation coefficients\n\t-b\n\t-c\n"
+void usagex2(char *name){
+	printf("%s program that use arg of comm line:\n\n", name);
+	printf("\t-a\tquadratic equation coefficients\n\t-b\n\t-c\n"
 		"\t-h\thelp\n"
 		"\t-o\talt output data\n"
-		"\t-s\tspecial working (more priority)\n"
-		);
+		"\t-s\tspecial working (more priority)\n");
 }
 
 void special(float *pa, float *pb, float *pc){
@@ -114,9 +123,5 @@ void special(float *pa, float *pb, float *pc){
 
 }
 
-void change_stream(FILE *fp, char *name){
-	if((fp = (name, 'w', stdout)) == NULL){
-		perror("cannot open file");
-		exit(1);
-	}
-}
+// void change_stream(FILE *fp, char *name){
+// }
