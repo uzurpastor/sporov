@@ -6,8 +6,8 @@ void usagex3(char *name){
 	printf("%s program that use arg of comm line:\n\n", name);
 	printf("\t--help\thelp message\n"
 		"\t-h\n"
-		"\t--compile\tstandart of compilation"
-		"\t-c\n");
+		"\t--special_output\tset file for thread of output\n"
+		"\t-s\n");
 }
 
 
@@ -123,5 +123,9 @@ void special(float *pa, float *pb, float *pc){
 
 }
 
-// void change_stream(FILE *fp, char *name){
-// }
+void change_stream(FILE *fp, char *name){
+	if((fp = freopen(name, "w", stdout)) == NULL){
+		perror("cannot open file");
+		exit(1);
+	}
+}

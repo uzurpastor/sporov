@@ -21,28 +21,24 @@ int main(int argc, char *argv[]){
 				break;
 			case 'c': 
 				setcoef(pc, optarg);
-				printf("%s", optarg);
+				fprintf(stdout, "%s", optarg);
 				check++;
 				break; 
 			case 'h':
 				usagex2(argv[0]);
 				break;
 			case 'o':
-				printf("%s\n", optarg);
-				if((fp = ((char*)optarg, 'w', stdout)) == NULL){
-					perror("cannot open file");
-					exit(1);
-				}
+				change_stream(fp, optarg);					
 				break;
 			case 's':
 				special(pa, pb, pc);
 				return 0;
 				break;
 			case ':': 
-				printf("option needs a value\n"); 
+				fprintf(stdout, "option needs a value\n"); 
 				break; 
 			case '?': 
-				printf("unknown option: %c\n", optopt);
+				fprintf(stdout, "unknown option: %c\n", optopt);
 				break; 
 		} 
 	} 
