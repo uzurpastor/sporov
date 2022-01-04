@@ -1,12 +1,12 @@
 STD=-std=c99
-FILE=pr3ex1
-LIB=libpr3
+FILE=pr3ex4
+LIB=../libpr3
 
 all: $(FILE)
 	
 
 $(FILE): $(FILE).o $(LIB).a
-	gcc $(STD) $(FILE).o -o $(FILE) -lpr3 -L./
+	gcc $(STD) $(FILE).o -o $(FILE) -lpr3 -L../
 
 
 $(FILE).o: $(FILE).c
@@ -18,7 +18,7 @@ $(LIB).a: $(LIB).c
 
 
 clean:
-	rm -rf *.o $(FILE) $(LIB).o
+	rm -rf *.o $(FILE) $(LIB).o $(LIB).a
 
 clean_test:
 	rm -f ../test

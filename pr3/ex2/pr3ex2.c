@@ -1,8 +1,8 @@
-#include "libpr3.h"
+#include "../libpr3.h"
 
 int main(int argc, char *argv[]){
 
-	char *thread = read(argc, argv);
+	char *thread = uread(argc, argv);
 	int count = find_count(thread);
 
 	char *commands[count];
