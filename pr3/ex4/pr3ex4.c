@@ -37,6 +37,8 @@ int main(int argc, char *argv[]){
 				break;
 
 		}
+
 	}
+	shell(BUF, argv[0]);
 	return 0;
 }

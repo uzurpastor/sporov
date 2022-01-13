@@ -43,12 +43,12 @@ void stop(int reason, char *name){
 	fprintf(stdout, "Wait 3 sec...\n");
 	switch(reason){
 		case 1:
-			fprintf(stdout, "stoppind all prosses of %s", name);
+			fprintf(stdout, "stoped all prosses of %s", name);
 			sleep(3);
 			exit(EXIT_SUCCESS);
 			break;
 		case 0:
-			fprintf(stderr, "failed. stoppind all prosses of %s", name);
+			fprintf(stderr, "failed. stoped all prosses of %s", name);
 			sleep(3);
 			exit(EXIT_FAILURE);
 			break;
