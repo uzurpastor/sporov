@@ -24,10 +24,11 @@ int main(void)
 			fprintf(stderr, "fork");
 			exit(EXIT_FAILURE);
 			break;
-		case 0:	execl("./sigin", "./sigin");
+		case 0:	execl("./sigin", "./sigin", NULL);
 			break;
 		default:{
 			int status, status_kill, sig;
+			sleep(3);
 			fprintf(stderr, "Pick signal: \n");
 			fprintf(stderr,
 				"\t1) SIGHUP(ignored)\n"
@@ -45,7 +46,7 @@ int main(void)
 			}
 
 			waitpid(pid, &status, 0);
-			fprintf(stderr, "waited");
+			fprintf(stderr, "waited\n");
 			if(WEXITSTATUS(status)){
 				fprintf(stderr, "normal exit of thr");
 			}

@@ -17,7 +17,7 @@ $(FILE).o: $(FILE).c
 clean:
 	rm -rf *.o *.a\
 		$(FILE)\
-		$(FILE_2)
+		$(SIG)
 
 clean_test:
 	rm -f ../test
